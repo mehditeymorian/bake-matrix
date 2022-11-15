@@ -1,0 +1,22 @@
+stages:
+  - build
+
+.build:
+  image: docker:latest
+  stage: build
+  when: manual
+  before_script:
+    - docker info
+    - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
+  script:
+    - TAG=${REGISTRY}/golang docker buildx bake --progress tty --push -f bake.hcl $BUILD
+
+
+build:
+  extends: .build
+  parallel:
+    matrix:
+      - BUILD: ['1-19', '1-18', '1-17']
+        REGISTRY: ['github-registry', 'private-registry']
+
+
