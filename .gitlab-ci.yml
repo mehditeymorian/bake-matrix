@@ -9,7 +9,7 @@ stages:
     - docker info
     - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
   script:
-    - TAG=${REGISTRY}/golang docker buildx bake --progress tty --push -f bake.hcl $BUILD
+    - TAG=${REGISTRY}/${IMAGE} docker buildx bake --progress tty --push -f bake.hcl $BUILD
 
 
 build:
@@ -18,7 +18,9 @@ build:
     matrix:
       - BUILD: ['1-19', '1-18', '1-17']
         REGISTRY: ['github-registry', 'private-registry']
+        IMAGE: 'golang'
       - BUILD: ['alp-3.-16']
         REGISTRY: ['github-registry', 'private-registry']
+        IMAGE: 'alpine'
 
 
