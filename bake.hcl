@@ -1,5 +1,5 @@
 group "default" {
-  targets = ['1-19', '1-18', '1-17']
+  targets = ["1-19", "1-18", "1-17"]
 }
 
 variable "TAG" {
@@ -7,7 +7,7 @@ variable "TAG" {
 }
 
 target "1-19" {
-  dockerfile = './Dockerfile'
+  dockerfile = "./Dockerfile"
   tags = ["${TAG}:1.19", "${TAG}:1.19-alpine"]
   args = {
     IMAGE = "golang:1.19.3-alpine3.16"
