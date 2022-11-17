@@ -3,7 +3,7 @@ variable "TAG" {
 }
 
 group "default" {
-  targets = ["go-1-19", "go-1-18", "go-1-17"]
+  targets = ["alp-3-16", "go-1-19", "go-1-18", "go-1-17"]
 }
 
 group "golang" {
