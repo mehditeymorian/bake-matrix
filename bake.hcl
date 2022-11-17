@@ -1,10 +1,11 @@
+variable "TAG" {
+  default = "golang"
+}
+
 group "default" {
   targets = ["1-19", "1-18", "1-17"]
 }
 
-variable "TAG" {
-  default = "golang"
-}
 
 target "1-19" {
   dockerfile = "./Dockerfile"
