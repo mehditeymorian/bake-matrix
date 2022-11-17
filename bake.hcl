@@ -6,6 +6,9 @@ group "default" {
   targets = ["1-19", "1-18", "1-17"]
 }
 
+group "new-versions" {
+  targets = ["1-19", "1-18"]
+}
 
 target "1-19" {
   dockerfile = "./Dockerfile"
