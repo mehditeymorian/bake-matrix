@@ -1,5 +1,5 @@
 group "default" {
-  targets = []
+  targets = ['1-19', '1-18', '1-17']
 }
 
 variable "TAG" {
