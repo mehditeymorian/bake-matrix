@@ -1,4 +1,4 @@
-ARG IMAGE=golang:latest
+ARG IMAGE=alpine:latest
 FROM $IMAGE
 
 LABEL maintainer="mehditeymorian322[at]gmail.com"
