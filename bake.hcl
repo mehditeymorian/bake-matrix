@@ -3,34 +3,46 @@ variable "TAG" {
 }
 
 group "default" {
-  targets = ["1-19", "1-18", "1-17"]
+  targets = ["go-1-19", "go-1-18", "go-1-17"]
 }
 
-group "new-versions" {
-  targets = ["1-19", "1-18"]
+group "golang" {
+  targets = ["go-1-19", "go-1-18", "go-1-17"]
 }
 
-target "1-19" {
-  dockerfile = "./Dockerfile"
+group "alpine" {
+  targets = ["alp-3-16"]
+}
+
+target "go-1-19" {
+  dockerfile = "./golang/Dockerfile"
   tags = ["${TAG}:1.19", "${TAG}:1.19-alpine"]
   args = {
     IMAGE = "golang:1.19.3-alpine3.16"
   }
 }
 
-target "1-18" {
-  dockerfile = "./Dockerfile"
+target "go-1-18" {
+  dockerfile = "./golang/Dockerfile"
   tags = ["${TAG}:1.18", "${TAG}:1.18-alpine"]
   args = {
     IMAGE = "golang:1.18.7-alpine3.16"
   }
 }
 
-target "1-17" {
-  dockerfile = "./Dockerfile"
+target "go-1-17" {
+  dockerfile = "./golang/Dockerfile"
   tags = ["${TAG}:1.17", "${TAG}:1.17-alpine"]
   args = {
     IMAGE = "golang:1.17-alpine3.14"
+  }
+}
+
+target "alp-3-16" {
+  dockerfile = "./alpine/Dockerfile"
+  tags = ["${TAG}:3.16"]
+  args = {
+    IMAGE = "alpine:3.16"
   }
 }
 
