@@ -15,7 +15,7 @@ group "alpine" {
 }
 
 target "go-1-19" {
-  dockerfile = "./golang/Dockerfile"
+  dockerfile = "./Dockerfile"
   tags = ["${TAG}:1.19", "${TAG}:1.19-alpine"]
   args = {
     IMAGE = "golang:1.19.3-alpine3.16"
@@ -23,7 +23,7 @@ target "go-1-19" {
 }
 
 target "go-1-18" {
-  dockerfile = "./golang/Dockerfile"
+  dockerfile = "./Dockerfile"
   tags = ["${TAG}:1.18", "${TAG}:1.18-alpine"]
   args = {
     IMAGE = "golang:1.18.7-alpine3.16"
@@ -31,7 +31,7 @@ target "go-1-18" {
 }
 
 target "go-1-17" {
-  dockerfile = "./golang/Dockerfile"
+  dockerfile = "./Dockerfile"
   tags = ["${TAG}:1.17", "${TAG}:1.17-alpine"]
   args = {
     IMAGE = "golang:1.17-alpine3.14"
@@ -39,7 +39,7 @@ target "go-1-17" {
 }
 
 target "alp-3-16" {
-  dockerfile = "./alpine/Dockerfile"
+  dockerfile = "./Dockerfile"
   tags = ["${TAG}:3.16"]
   args = {
     IMAGE = "alpine:3.16"
