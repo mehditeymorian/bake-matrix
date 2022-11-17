@@ -18,5 +18,7 @@ build:
     matrix:
       - BUILD: ['1-19', '1-18', '1-17']
         REGISTRY: ['github-registry', 'private-registry']
+      - BUILD: ['alp-3.-16']
+        REGISTRY: ['github-registry', 'private-registry']
 
 
