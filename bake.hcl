@@ -1,5 +1,5 @@
-variable "TAG" {
-  default = "golang"
+variable "REGISTRY" {
+  default = ""
 }
 
 group "default" {
@@ -16,7 +16,7 @@ group "alpine" {
 
 target "go-1-19" {
   dockerfile = "./Dockerfile"
-  tags = ["${TAG}:1.19", "${TAG}:1.19-alpine"]
+  tags = ["${REGISTRY}golang:1.19", "${REGISTRY}golang:1.19-alpine"]
   args = {
     IMAGE = "golang:1.19.3-alpine3.16"
   }
@@ -24,7 +24,7 @@ target "go-1-19" {
 
 target "go-1-18" {
   dockerfile = "./Dockerfile"
-  tags = ["${TAG}:1.18", "${TAG}:1.18-alpine"]
+  tags = ["${REGISTRY}golang:1.18", "${REGISTRY}golang:1.18-alpine"]
   args = {
     IMAGE = "golang:1.18.7-alpine3.16"
   }
@@ -32,7 +32,7 @@ target "go-1-18" {
 
 target "go-1-17" {
   dockerfile = "./Dockerfile"
-  tags = ["${TAG}:1.17", "${TAG}:1.17-alpine"]
+  tags = ["${REGISTRY}golang:1.17", "${REGISTRY}golang:1.17-alpine"]
   args = {
     IMAGE = "golang:1.17-alpine3.14"
   }
@@ -40,7 +40,7 @@ target "go-1-17" {
 
 target "alp-3-16" {
   dockerfile = "./Dockerfile"
-  tags = ["${TAG}:3.16"]
+  tags = ["${REGISTRY}alpine:3.16"]
   args = {
     IMAGE = "alpine:3.16"
   }
