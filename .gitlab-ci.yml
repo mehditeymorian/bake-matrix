@@ -7,20 +7,27 @@ stages:
   when: manual
   before_script:
     - docker info
-    - docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
   script:
-    - TAG=${REGISTRY}/${IMAGE} docker buildx bake --progress tty --push -f bake.hcl $BUILD
+    - docker login -u ${REGISTRY_USERNAME} -p ${REGISTRY_PASSWORD} ${REGISTRY}
+    - REGISTRY=${REGISTRY}/ docker buildx bake --progress tty --push -f bake.hcl $BUILD
 
 
 build:
   extends: .build
+  rules:
+    - if: $REGISTRY == 'github-registry'
+      variables:
+        REGISTRY_USERNAME: ${CI_GITHUB_REGISTRY_USER}
+        REGISTRY_PASSWORD: ${CI_GITHUB_REGISTRY_PASSWORD}
+    - if: $REGISTRY == 'private-registry'
+      variables:
+        REGISTRY_USERNAME: ${CI_PRIVATE_REGISTRY_USER}
+        REGISTRY_PASSWORD: ${CI_PRIVATE_REGISTRY_PASSWORD}
   parallel:
     matrix:
-      - BUILD: ['1-19', '1-18', '1-17']
-        REGISTRY: ['github-registry', 'private-registry']
-        IMAGE: 'golang'
-      - BUILD: ['alp-3.-16']
-        REGISTRY: ['github-registry', 'private-registry']
-        IMAGE: 'alpine'
+      - BUILD: ['alp-3.-16', '1-19', '1-18', '1-17']
+        REGISTRY: 'github-registry'
+      - BUILD: ['alp-3.-16', '1-19', '1-18', '1-17']
+        REGISTRY: 'private-registry'
 
 
